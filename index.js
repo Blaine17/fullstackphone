@@ -41,9 +41,9 @@ let persons = [
 console.log(Math.random() * 5000)
   
 
-app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
+// app.get('/', (request, response) => {
+//   response.send('<h1>Hello World!</h1>')
+// })
 
 app.get('/info', (request, response) => {
     const entries = persons.length
