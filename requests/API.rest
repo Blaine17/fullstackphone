@@ -33,3 +33,39 @@ Content-Type: application/json
     "name": "Dan Abramov",
     "number": "999999999"
 }
+
+### not long enough post
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": " ",
+    "number": "999999999"
+}
+
+### not long enough PUT
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "s",
+    "number": "999999999"
+}
+
+### not valid number
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "testnumber",
+    "number": "999999999"
+}
+
+# ### handle update
+# PUT http://localhost:3001/api/
+# Content-Type: application/json
+
+# {
+#     "name": "Dan Abramov",
+#     "number": "random"
+# }

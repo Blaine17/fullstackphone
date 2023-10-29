@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import api from './services/api'
 import './index.css'
 
 const Notification = ({ type, message }) => {
 
+  console.log(message)
   if (type === null) {
     return null
   }
@@ -141,8 +141,19 @@ const App = () => {
       setPersons(newPerson)
     })
     .catch(error => {
-      alert(`${newName} was unable to be added to the phonebook`)
+      setActionMessage({
+        type: 'error',
+        message: error.response.data.error
+      })
+      console.log(error.response.data.error)
+     // alert(`${newName} was unable to be added to the phonebook`)
     })
+    setTimeout(() => {
+      setActionMessage({
+        type: null,
+        message: null
+      })
+    }, 5000)
     setNewNumber("")
     setNewName("")
   }
@@ -150,7 +161,10 @@ const App = () => {
   const removePerson = (id) => {
     console.log(id)
     const message = "are you sure you want to delete this entry"
-    confirm(message)
+    if (!confirm(message)) {
+      console.log("denied")
+      return
+    }
     api.remove(id)
     .then(person => {
       console.log(person)
